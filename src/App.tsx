@@ -1,12 +1,13 @@
 import styles from './App.module.scss';
 import Search from './components/Search/Search';
+import Posts from './components/Posts/Posts';
 
 function App() {
   return (
     <div className={styles.page}>
       <div className={styles.main}>
         <Search />
-        <div className={styles.posts}>postsSearch</div>
+        <Posts />
       </div>
     </div>
   );
