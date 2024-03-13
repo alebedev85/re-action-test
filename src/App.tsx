@@ -1,13 +1,12 @@
 import styles from './App.module.scss';
+import Search from './components/Search/Search';
 
 function App() {
   return (
     <div className={styles.page}>
-      page
-      <div className={styles.maim}>
-        maim
-        <div className={styles.search}>search</div>
-        <div className={styles.posts}>posts</div>
+      <div className={styles.main}>
+        <Search />
+        <div className={styles.posts}>postsSearch</div>
       </div>
     </div>
   );
