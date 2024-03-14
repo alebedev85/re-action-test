@@ -1,5 +1,6 @@
 .page {
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #a1adc4;
 }
 
 .main{
@@ -8,5 +9,4 @@
   padding: 0 40px;
   box-sizing: border-box;
   margin: auto;
-  background-color: #f1f6ff;
 }

@@ -1,6 +1,6 @@
 import Input from '@mui/joy/Input';
 import { Button } from '@mui/joy';
-import SearchIcon from '../../assest/icons8-search.svg';
+import SearchIcon from '../../assests/icons8-search.svg';
 import styles from './Search.module.scss';
 
 export default function Search() {

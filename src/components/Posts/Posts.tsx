@@ -1,14 +1,17 @@
-import React from 'react';
 import Post from '../Post/Post';
-import { test } from './data';
+import { useAppSelector } from '../../redux/store';
+import { postsListSelector } from '../../redux/slices/postsSlices';
 import styles from './Posts.module.scss';
 
 export default function Posts() {
-  return (
+  const postList = useAppSelector(postsListSelector);
+  return postList.length ? (
     <div className={styles.posts}>
-      {test.map((item) => (
+      {postList.map((item) => (
         <Post key={item.id} id={item.id} title={item.title} body={item.body} />
       ))}
     </div>
+  ) : (
+    <span>Список пуст</span>
   );
 }
