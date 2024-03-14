@@ -1,27 +1,33 @@
 import Input from '@mui/joy/Input';
 import { Button } from '@mui/joy';
+import { useForm } from 'react-hook-form';
 import SearchIcon from '../../assests/icons8-search.svg';
+import { SearchPropsType, FormData } from './types';
 import styles from './Search.module.scss';
 
-export default function Search() {
+export default function Search({ setText }: SearchPropsType) {
+  const { register, handleSubmit } = useForm<FormData>({
+    defaultValues: { text: '' },
+    mode: 'onChange',
+  });
+
+  const onSubmit = (data: FormData) => {
+    setText(data.text);
+  };
+
   return (
-    <div className={styles.search}>
+    <form className={styles.search} onSubmit={handleSubmit(onSubmit)}>
       <Input
         sx={{ '--Input-decoratorChildHeight': '45px' }}
         placeholder="Поиск"
-        type="email"
+        type="text"
         required
-        // value={data.email}
-        // onChange={(event) =>
-        //   setData({ email: event.target.value, status: 'initial' })
-        // }
-        // error={data.status === 'failure'}
+        {...register('text')}
         endDecorator={
           <Button
             variant="solid"
             color="primary"
-            // loading={data.status === 'loading'}
-            type="button"
+            type="submit"
             sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
           >
             <img
@@ -32,6 +38,6 @@ export default function Search() {
           </Button>
         }
       />
-    </div>
+    </form>
   );
 }

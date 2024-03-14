@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import Search from './components/Search/Search';
 import Posts from './components/Posts/Posts';
 import { useGetPostsListQuery } from './components/Posts/api';
-import { setPostsList } from './redux/slices/postsSlices';
+import { setPostsList } from './redux/slices/postsSlice';
+import { setFilters } from './redux/slices/filtersSlice';
 import Loader from './components/Loader/Loader';
 import { useAppDispatch } from './redux/store';
 import styles from './App.module.scss';
@@ -10,6 +11,10 @@ import styles from './App.module.scss';
 function App() {
   const dispatch = useAppDispatch();
   const { data, isLoading, isSuccess } = useGetPostsListQuery();
+
+  const handlerFilter = (value: string) => {
+    dispatch(setFilters(value));
+  };
   useEffect(() => {
     if (isSuccess) {
       dispatch(setPostsList(data));
@@ -19,7 +24,7 @@ function App() {
   return (
     <div className={styles.page}>
       <div className={styles.main}>
-        <Search />
+        <Search setText={handlerFilter} />
         {isLoading ? <Loader /> : <Posts />}
       </div>
     </div>
