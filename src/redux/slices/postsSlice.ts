@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice, createSelector } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { PostType } from '../../utils/types';
 import { FiltersType } from './filtersSlice';

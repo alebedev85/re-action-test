@@ -4,7 +4,7 @@ import { PostType } from '../../utils/types';
 const PostsApi = mainApi.injectEndpoints({
   endpoints: (build) => ({
     getPostsList: build.query<PostType[], void>({
-      query: () => '/posts',
+      query: () => '/posts?_limit=10',
     }),
   }),
   overrideExisting: false,

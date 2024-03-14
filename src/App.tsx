@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Search from './components/Search/Search';
 import Posts from './components/Posts/Posts';
+import PaginationFeild from './components/Pagination/Pagination';
 import { useGetPostsListQuery } from './components/Posts/api';
 import { setPostsList } from './redux/slices/postsSlice';
 import { setFilters } from './redux/slices/filtersSlice';
@@ -26,6 +27,7 @@ function App() {
       <div className={styles.main}>
         <Search setText={handlerFilter} />
         {isLoading ? <Loader /> : <Posts />}
+        <PaginationFeild />
       </div>
     </div>
   );
