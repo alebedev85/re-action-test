@@ -21,7 +21,6 @@ export default function Search({ setText }: SearchPropsType) {
         sx={{ '--Input-decoratorChildHeight': '45px' }}
         placeholder="Поиск"
         type="text"
-        required
         {...register('text')}
         endDecorator={
           <Button
