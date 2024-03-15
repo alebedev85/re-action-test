@@ -7,6 +7,7 @@ type InitialStateType = {
   params: {
     query: string;
     page: number;
+    pages: number;
   };
 };
 
@@ -15,6 +16,7 @@ const initialState: InitialStateType = {
   params: {
     query: '',
     page: 1,
+    pages: 1,
   },
 };
 
@@ -27,20 +29,18 @@ const postsSlice = createSlice({
     },
     setQuery: (state, action: PayloadAction<string>) => {
       state.params.query = action.payload;
+      state.params.page = 1;
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.params.page = action.payload;
+    },
+    setPages: (state, action: PayloadAction<number>) => {
+      state.params.pages = action.payload;
     },
   },
 });
 
 export default postsSlice.reducer;
-export const { setPostsList, setQuery, setPage } = postsSlice.actions;
+export const { setPostsList, setQuery, setPage, setPages } = postsSlice.actions;
 export const selectPostsList = (state: RootState) => state.posts.postsList;
 export const selectParams = (state: RootState) => state.posts.params;
-// export const selectFilteredPosts = (state: RootState, filter: FiltersType) =>
-//   state.posts.postsList.filter(
-//     (p) =>
-//       p.title.toLowerCase().includes(filter.text.toLowerCase()) ||
-//       p.body.toLowerCase().includes(filter.text.toLowerCase())
-//   );

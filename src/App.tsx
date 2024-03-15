@@ -5,10 +5,12 @@ import { useGetPostsListQuery } from './components/Posts/api';
 import {
   setPostsList,
   setQuery,
+  setPages,
   selectParams,
 } from './redux/slices/postsSlice';
 import Loader from './components/Loader/Loader';
 import { useAppDispatch, useAppSelector } from './redux/store';
+import { PER_PAGE } from './utils/const';
 import styles from './App.module.scss';
 
 function App() {
@@ -22,9 +24,10 @@ function App() {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setPostsList(data));
+      dispatch(setPostsList(data.postlist));
+      dispatch(setPages(Math.ceil(data.totalCount / PER_PAGE)));
     }
-  }, [isFetching]); // eslint-disable-line
+  }, [isFetching, query, page]); // eslint-disable-line
 
   return (
     <div className={styles.page}>
