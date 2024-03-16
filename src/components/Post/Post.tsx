@@ -1,5 +1,7 @@
-import React from 'react';
 import { Card, Typography, CardContent } from '@mui/joy';
+import { HighlightedText } from '../HighlightedText/HighlightedText';
+import { useAppSelector } from '../../redux/store';
+import { selectParams } from '../../redux/slices/postsSlice';
 import styles from './Post.module.scss';
 
 type PostPropsType = {
@@ -9,15 +11,20 @@ type PostPropsType = {
 };
 
 export default function Post({ id, title, body }: PostPropsType) {
+  const { query } = useAppSelector(selectParams);
   return (
     <div className={styles.post}>
       <Card>
-        <Typography level="body-sm">{id}</Typography>
-        <Typography level="title-lg">{title}</Typography>
+        <Typography level="body-sm">
+          <HighlightedText text={`${id}`} search={query} />
+        </Typography>
+        <Typography level="title-lg">
+          <HighlightedText text={title} search={query} />
+        </Typography>
         <CardContent orientation="horizontal">
           <div>
             <Typography fontSize="sm" fontWeight="lg">
-              {body}
+              <HighlightedText text={body} search={query} />
             </Typography>
           </div>
         </CardContent>
